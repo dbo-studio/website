@@ -69,45 +69,6 @@ export async function syncReleasesFromGitHubAction() {
 	}
 }
 
-export async function getSyncStatus() {
-	try {
-		const githubResponse = await fetch(
-			`${APP_CONFIG.github.apiUrl}/repos/${APP_CONFIG.github.owner}/${APP_CONFIG.github.repo}/releases`,
-		);
-		if (!githubResponse.ok) {
-			throw new GitHubApiError("Failed to fetch releases from GitHub");
-		}
-		const githubReleases: GitHubRelease[] = await githubResponse.json();
-
-		let dbReleases: Release[] = [];
-		try {
-			dbReleases = await getReleasesFromDatabase();
-		} catch (dbError) {
-			logger.warn("Database error in sync status check", dbError);
-		}
-
-		const needsSync = githubReleases.length !== dbReleases.length;
-		logger.info(
-			`Sync status: GitHub=${githubReleases.length}, DB=${dbReleases.length}, needsSync=${needsSync}`,
-		);
-
-		return {
-			success: true,
-			githubReleases: githubReleases.length,
-			databaseReleases: dbReleases.length,
-			needsSync,
-			latestGitHubRelease: githubReleases[0]?.tag_name || "N/A",
-			latestDatabaseRelease: dbReleases[0]?.tagName || "N/A",
-		};
-	} catch (error) {
-		logger.error("Error getting sync status", error);
-		return {
-			success: false,
-			error: error instanceof Error ? error.message : "Unknown error",
-		};
-	}
-}
-
 export async function getDownloadAsset(dbReleases: Release, platform: string) {
 	try {
 		const assets = dbReleases.assets as Array<{
