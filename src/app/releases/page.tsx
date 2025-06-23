@@ -1,11 +1,11 @@
-import DownloadPage from "./components/DownloadPage";
+import Releases from "./components/Releases";
 
 export const metadata = {
 	title: "Releases - DBO Studio",
 	description: "Browse all releases of DBO Studio",
 };
 
-export default function Releases() {
+export default function ReleasesPage() {
 	return (
 		<section className="relative">
 			<div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -19,7 +19,7 @@ export default function Releases() {
 							older versions.
 						</p>
 					</div>
-					<DownloadPage />
+					<Releases />
 				</div>
 			</div>
 		</section>

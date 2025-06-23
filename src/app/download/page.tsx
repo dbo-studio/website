@@ -1,4 +1,4 @@
-import SimpleDownload from "./components/SimpleDownload";
+import DownloadBox from "./components/DownloadBox";
 
 export const metadata = {
 	title: "Download - DBO Studio",
@@ -18,7 +18,7 @@ export default function Download() {
 							Get the latest version for your operating system.
 						</p>
 					</div>
-					<SimpleDownload />
+					<DownloadBox />
 				</div>
 			</div>
 		</section>

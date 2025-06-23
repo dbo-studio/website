@@ -1,3 +1,5 @@
+import { APP_CONFIG } from "@/src/lib/constants";
+import { upsertRelease } from "@/src/lib/database";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { syncReleasesFromGitHubAction } from "../../../lib/actions";
@@ -40,7 +42,27 @@ export async function POST(request: NextRequest) {
 			`GitHub Actions triggered sync: ${action || "manual"} ${release_id ? `for release ${release_id}` : ""} ${version ? `(v${version})` : ""}`,
 		);
 
-		// اجرای sync
+		if (release_id) {
+			// فقط یک ریلیز را sync کن
+			const githubResponse = await fetch(
+				`${APP_CONFIG.github.apiUrl}/repos/${APP_CONFIG.github.owner}/${APP_CONFIG.github.repo}/releases/${release_id}`,
+			);
+			if (!githubResponse.ok) {
+				throw new Error("Failed to fetch release from GitHub");
+			}
+			const githubRelease = await githubResponse.json();
+			await upsertRelease(githubRelease);
+
+			logger.info(`Successfully synced release ${release_id}`);
+			return NextResponse.json({
+				success: true,
+				message: `Successfully synced release ${release_id}`,
+				releaseInfo: { release_id, action, version },
+				timestamp: new Date().toISOString(),
+			});
+		}
+
+		// اجرای sync همه ریلیزها (حالت fallback)
 		const result = await syncReleasesFromGitHubAction();
 
 		if (result.success) {

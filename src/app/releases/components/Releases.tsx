@@ -2,17 +2,14 @@
 
 import { getReleasesFromDB } from "@/src/lib/actions";
 import type { DatabaseRelease } from "@/src/lib/types";
-import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import { useCallback, useEffect, useState } from "react";
+import Markdown from "react-markdown";
 
-import WindowsIcon from "@/src/components/WindowsIcon";
-import {
-	SiApple,
-	SiArm,
-	SiIntel,
-	SiLinux,
-} from "@icons-pack/react-simple-icons";
-import { Cpu, HardDriveDownload } from "lucide-react";
+import remarkGfm from "remark-gfm";
+import ArchInfo from "./ArchInfo";
+import Empty from "./Empty";
+import Loading from "./Loading";
+import PlatformIcon from "./PlatformIcon";
 
 type Asset = {
 	name: string;
@@ -20,75 +17,27 @@ type Asset = {
 	size: number;
 };
 
-const PlatformIcon = ({ name }: { name: string }) => {
-	const lowerCaseName = name.toLowerCase();
-	if (lowerCaseName.includes("windows") || lowerCaseName.includes(".exe")) {
-		return <WindowsIcon />;
-	}
-	if (
-		lowerCaseName.includes("macos") ||
-		lowerCaseName.includes("darwin") ||
-		lowerCaseName.includes(".dmg")
-	) {
-		return <SiApple className="w-5 h-5 text-gray-500" />;
-	}
-	if (lowerCaseName.includes("linux") || lowerCaseName.includes(".deb")) {
-		return <SiLinux className="w-5 h-5 text-yellow-500" />;
-	}
-	return <HardDriveDownload className="w-5 h-5 text-gray-400" />;
-};
-
-const ArchInfo = ({ name }: { name: string }) => {
-	const lowerCaseName = name.toLowerCase();
-	if (lowerCaseName.includes("arm64") || lowerCaseName.includes("aarch64")) {
-		return (
-			<div className="flex items-center gap-1.5">
-				<SiArm className="w-4 h-4 text-gray-500" />
-				<span className="text-xs text-gray-600">ARM64</span>
-			</div>
-		);
-	}
-	if (lowerCaseName.includes("intel") || lowerCaseName.includes("x64")) {
-		return (
-			<div className="flex items-center gap-1.5">
-				<SiIntel className="w-4 h-4 text-gray-500" />
-				<span className="text-xs text-gray-600">Intel x64</span>
-			</div>
-		);
-	}
-	return (
-		<div className="flex items-center gap-1.5">
-			<Cpu className="w-4 h-4 text-gray-400" />
-			<span className="text-xs text-gray-600">Universal</span>
-		</div>
-	);
-};
-
-export default function DownloadPage() {
+export default function Releases() {
 	const [releases, setReleases] = useState<DatabaseRelease[]>([]);
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState<string>("");
+
+	const fetchReleases = useCallback(async () => {
+		try {
+			setLoading(true);
+			const result = await getReleasesFromDB();
+			if (result.success && result.releases) {
+				setReleases(result.releases);
+			}
+			setLoading(false);
+		} catch (err) {
+			console.error("Error fetching releases:", err);
+			setLoading(false);
+		}
+	}, []);
 
 	useEffect(() => {
-		async function fetchReleases() {
-			try {
-				setLoading(true);
-				const result = await getReleasesFromDB();
-				if (result.success && result.releases) {
-					setReleases(result.releases);
-				} else {
-					setError(result.error || "Failed to fetch releases");
-				}
-			} catch (err) {
-				console.error("Error fetching releases:", err);
-				setError("An unexpected error occurred.");
-			} finally {
-				setLoading(false);
-			}
-		}
-
 		fetchReleases();
-	}, []);
+	}, [fetchReleases]);
 
 	const formatDate = (date: Date | null) => {
 		if (!date) return "Unknown date";
@@ -108,40 +57,11 @@ export default function DownloadPage() {
 	};
 
 	if (loading) {
-		return (
-			<div className="animate-pulse space-y-8">
-				{[1, 2, 3].map((n) => (
-					<div
-						key={`loader-skeleton-${n}`}
-						className="p-6 bg-white rounded-lg shadow-md border border-gray-200"
-					>
-						<div className="h-7 bg-gray-200 rounded w-1/3 mb-2" />
-						<div className="h-4 bg-gray-200 rounded w-1/4 mb-6" />
-						<div className="space-y-3">
-							<div className="h-4 bg-gray-200 rounded w-full" />
-							<div className="h-4 bg-gray-200 rounded w-5/6" />
-						</div>
-					</div>
-				))}
-			</div>
-		);
-	}
-
-	if (error) {
-		return (
-			<div className="bg-red-50 text-red-700 border border-red-200 rounded-lg p-6 text-center">
-				<h3 className="font-bold text-lg mb-2">Error</h3>
-				<p>{error}</p>
-			</div>
-		);
+		return <Loading />;
 	}
 
 	if (releases.length === 0) {
-		return (
-			<div className="bg-gray-50 border border-gray-200 rounded-lg p-10 text-center">
-				<p className="text-gray-600">No releases found.</p>
-			</div>
-		);
+		return <Empty />;
 	}
 
 	return (
@@ -170,7 +90,9 @@ export default function DownloadPage() {
 
 						{release.body && (
 							<div className="prose prose-sm max-w-none text-gray-700 mb-8">
-								<ReactMarkdown>{String(release.body)}</ReactMarkdown>
+								<Markdown remarkPlugins={[remarkGfm]}>
+									{String(release.body)}
+								</Markdown>
 							</div>
 						)}
 
