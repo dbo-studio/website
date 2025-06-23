@@ -2,14 +2,15 @@ import { APP_CONFIG } from "@/src/lib/constants";
 import { upsertRelease } from "@/src/lib/database";
 import { logger } from "@/src/lib/logger";
 import { withAuth } from "@/src/lib/middleware";
+import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 export const POST = withAuth(async function POST(
-	request: Request,
-	{ params }: { params: { release_id: string } },
+	request: NextRequest,
+	{ params }: { params: Promise<{ release_id: string }> },
 ) {
 	try {
-		const { release_id } = params;
+		const { release_id } = await params;
 		if (!release_id) {
 			return NextResponse.json(
 				{
