@@ -1,5 +1,4 @@
 import { APP_CONFIG } from "@/src/lib/constants";
-import { SiGithub } from "@icons-pack/react-simple-icons";
 import Link from "next/link";
 import Logo from "./logo";
 
@@ -37,7 +36,11 @@ export default function Header() {
 								href={APP_CONFIG.github.repoUrl}
 								aria-label="Github"
 							>
-								<SiGithub className="text-gray-500 ml-4" />
+								<img
+									src={`https://img.shields.io/github/stars/${APP_CONFIG.github.owner}/${APP_CONFIG.github.repo}?style=social`}
+									alt="GitHub stars"
+									className="ml-2 h-6"
+								/>
 							</Link>
 						</li>
 					</ul>
