@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Logo from "./logo";
+import { APP_CONFIG } from "@/src/lib/constants";
 
 export default function Footer({ border = false }: { border?: boolean }) {
 	return (
 		<footer>
 			<div className="mx-auto max-w-6xl px-4 sm:px-6">
-				{/* Top area: Blocks */}
 				<div className={"flex justify-between py-8"}>
 					<div className="space-y-2 sm:col-span-12 lg:col-span-4">
 						<div className="text-sm text-gray-600 flex items-center gap-2">
@@ -18,7 +18,7 @@ export default function Footer({ border = false }: { border?: boolean }) {
 							<li>
 								<Link
 									className="flex items-center justify-center text-blue-500 transition hover:text-blue-600"
-									href="https://github.com/DBO-Studio/dbo"
+									href={APP_CONFIG.github.repoUrl}
 									aria-label="Github"
 								>
 									{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}

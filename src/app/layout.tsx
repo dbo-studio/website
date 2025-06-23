@@ -26,11 +26,13 @@ export default function RootLayout({
 				<div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
 					{children}
 				</div>
-				<script
-					defer
-					src="https://cloud.umami.is/script.js"
-					data-website-id="29fe9d00-ff33-47fa-acc7-e6ea7ebcf526"
-				/>
+				{process.env.NODE_ENV === "production" && (
+					<script
+						defer
+						src="https://cloud.umami.is/script.js"
+						data-website-id="29fe9d00-ff33-47fa-acc7-e6ea7ebcf526"
+					/>
+				)}
 			</body>
 		</html>
 	);

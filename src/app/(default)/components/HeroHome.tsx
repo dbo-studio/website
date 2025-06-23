@@ -1,5 +1,6 @@
 import PageIllustration from "@/src/app/(default)/components/PageIllustration";
 import Carousel from "./Carousel";
+import DownloadButton from "./DownloadButton/DownloadButton";
 
 export default function HeroHome() {
 	return (
@@ -32,20 +33,10 @@ export default function HeroHome() {
 									data-aos="zoom-y-out"
 									data-aos-delay={450}
 								>
-									<a
-										className="btn group mb-4 w-full bg-linear-to-t from-blue-600 to-blue-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-sm hover:bg-[length:100%_150%] sm:mb-0 sm:w-auto"
-										href="#0"
-									>
-										<span className="relative inline-flex items-center">
-											Download{" "}
-											<span className="ml-1 tracking-normal text-blue-300 transition-transform group-hover:translate-x-0.5">
-												-&gt;
-											</span>
-										</span>
-									</a>
+									<DownloadButton />
 									<a
 										className="btn w-full bg-white text-gray-800 shadow-sm hover:bg-gray-50 sm:ml-4 sm:w-auto"
-										href="#0"
+										href="#features"
 									>
 										Learn More
 									</a>
