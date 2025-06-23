@@ -35,7 +35,7 @@ export default function HeroHome() {
 								>
 									<DownloadButton />
 									<a
-										className="btn w-full bg-white text-gray-800 shadow-sm hover:bg-gray-50 sm:ml-4 sm:w-auto"
+										className="btn w-full bg-white text-gray-800 shadow-sm hover:bg-gray-50 sm:ml-4 sm:w-auto mt-3 md:mt-0"
 										href="#features"
 									>
 										Learn More

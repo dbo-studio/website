@@ -1,19 +1,16 @@
-import Image from "next/image";
+import WindowsIcon from "@/src/components/WindowsIcon";
+import { SiApple, SiLinux } from "@icons-pack/react-simple-icons";
 
 const platformIcons = {
-	macos: "/images/apple-logo.svg",
-	windows: "/images/windows-logo.svg",
-	linux: "/images/linux-logo.png",
+	macos: <SiApple className="text-white" />,
+	windows: <WindowsIcon className="text-white" />,
+	linux: <SiLinux className="text-white" />,
 };
 
 export default function PlatformIcon({ platform }: { platform: string }) {
-	console.log("🚀 ~ PlatformIcon ~ platform:", platform);
 	return (
-		<Image
-			src={platformIcons[platform as keyof typeof platformIcons]}
-			alt={platform}
-			width={16}
-			height={16}
-		/>
+		<div className="text-white">
+			{platformIcons[platform as keyof typeof platformIcons]}
+		</div>
 	);
 }

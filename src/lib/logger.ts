@@ -1,5 +1,3 @@
-import { env } from "./env";
-
 export enum LogLevel {
 	DEBUG = 0,
 	INFO = 1,
@@ -12,7 +10,7 @@ class Logger {
 
 	constructor() {
 		this.level =
-			env.NODE_ENV === "development" ? LogLevel.DEBUG : LogLevel.INFO;
+			process.env.NODE_ENV === "development" ? LogLevel.DEBUG : LogLevel.INFO;
 	}
 
 	private formatMessage(

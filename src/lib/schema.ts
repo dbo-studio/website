@@ -28,3 +28,10 @@ export const releases = pgTable("releases", {
 
 export type Release = typeof releases.$inferSelect;
 export type NewRelease = typeof releases.$inferInsert;
+
+export type Asset = {
+	name: string;
+	browser_download_url: string;
+	size: number;
+	content_type: string;
+};
