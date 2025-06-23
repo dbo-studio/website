@@ -6,14 +6,18 @@ import Slide3 from "@/public/images/slide-3.png";
 import Slide4 from "@/public/images/slide-4.png";
 import Image from "next/image";
 import "swiper/css";
+import "swiper/css/effect-fade";
+
+import { EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 export default function Carousel() {
 	return (
 		<Swiper
+			autoplay={true}
+			effect="fade"
+			modules={[EffectFade]}
 			spaceBetween={50}
 			slidesPerView={1}
-			onSlideChange={() => console.log("slide change")}
-			onSwiper={(swiper) => console.log(swiper)}
 		>
 			<SwiperSlide>
 				<Image src={Slide1} alt="Slide 1" />
