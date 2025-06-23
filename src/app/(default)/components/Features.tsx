@@ -1,7 +1,7 @@
 import PlanetImg from "@/public/images/features-image.svg";
 import Image from "next/image";
 
-export default function FeaturesPlanet() {
+export default function Features() {
   return (
     <section className="relative before:absolute before:inset-0 before:-z-20 before:bg-gray-900">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

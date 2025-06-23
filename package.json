@@ -1,29 +1,30 @@
 {
-  "name": "dbo_website",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@headlessui/react": "^2.2.4",
-    "aos": "^2.3.4",
-    "next": "15.3.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/postcss": "^4.1.10",
-    "@types/aos": "^3.0.7",
-    "@types/node": "^20.19.1",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "prettier-plugin-tailwindcss": "^0.6.13",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  }
+	"name": "dbo_website",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"aos": "^2.3.4",
+		"lucide-react": "^0.522.0",
+		"next": "15.3.4",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"swiper": "^11.2.8"
+	},
+	"devDependencies": {
+		"@tailwindcss/forms": "^0.5.10",
+		"@tailwindcss/postcss": "^4.1.10",
+		"@types/aos": "^3.0.7",
+		"@types/node": "^20.19.1",
+		"@types/react": "^19.1.8",
+		"@types/react-dom": "^19.1.6",
+		"prettier-plugin-tailwindcss": "^0.6.13",
+		"tailwindcss": "^4",
+		"typescript": "^5"
+	}
 }

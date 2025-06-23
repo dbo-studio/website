@@ -5,30 +5,30 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import Footer from "@/src/components/ui/footer";
-import Header from "@/src/components/ui/header";
+import Footer from "@/src/components/layout/footer";
+import Header from "@/src/components/layout/header";
 
 export default function DefaultLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  useEffect(() => {
-    AOS.init({
-      once: true,
-      disable: "phone",
-      duration: 700,
-      easing: "ease-out-cubic",
-    });
-  });
+	useEffect(() => {
+		AOS.init({
+			once: true,
+			disable: "phone",
+			duration: 700,
+			easing: "ease-out-cubic",
+		});
+	});
 
-  return (
-    <>
-      <Header />
+	return (
+		<>
+			<Header />
 
-      <main className="grow">{children}</main>
+			<main className="grow">{children}</main>
 
-      <Footer border={true} />
-    </>
-  );
+			<Footer border={true} />
+		</>
+	);
 }
