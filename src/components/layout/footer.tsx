@@ -3,7 +3,7 @@ import { SiGithub } from "@icons-pack/react-simple-icons";
 import Link from "next/link";
 import Logo from "./logo";
 
-export default function Footer({ border = false }: { border?: boolean }) {
+export default function Footer() {
 	return (
 		<footer>
 			<div className="mx-auto max-w-6xl px-4 sm:px-6">

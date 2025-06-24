@@ -1,9 +1,9 @@
 "use client";
 
-import { getReleasesFromDB } from "@/src/lib/actions";
 import type { DatabaseRelease } from "@/src/lib/types";
 import { useCallback, useEffect, useState } from "react";
 import Markdown from "react-markdown";
+import { getReleasesFromDB } from "../../../lib/actions";
 
 import remarkGfm from "remark-gfm";
 import ArchInfo from "./ArchInfo";

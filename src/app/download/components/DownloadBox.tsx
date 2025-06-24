@@ -2,12 +2,12 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-import WindowsIcon from "@/src/components/WindowsIcon";
-import { getLatestVersion } from "@/src/lib/actions";
 import { logger } from "@/src/lib/logger";
 import type { Asset } from "@/src/lib/schema";
 import { SiApple, SiLinux } from "@icons-pack/react-simple-icons";
+import { getLatestVersion } from "../../../lib/actions";
 import type { Platform } from "../types";
+import WindowsIcon from "./../../../components/WindowsIcon";
 import DownloadItem from "./DownloadItem";
 import Empty from "./Empty";
 import Loading from "./Loading";

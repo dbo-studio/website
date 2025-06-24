@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import Footer from "@/src/components/layout/footer";
-import Header from "@/src/components/layout/header";
+import Footer from "../../components/layout/footer";
+import Header from "../../components/layout/header";
 
 export default function DefaultLayout({
 	children,
@@ -28,7 +28,7 @@ export default function DefaultLayout({
 
 			<main className="grow">{children}</main>
 
-			<Footer border={true} />
+			<Footer />
 		</>
 	);
 }
