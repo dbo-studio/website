@@ -1,12 +1,12 @@
 "use client";
 
-import Slide1 from "@/public/images/slide-1.png";
-import Slide2 from "@/public/images/slide-2.png";
-import Slide3 from "@/public/images/slide-3.png";
-import Slide4 from "@/public/images/slide-4.png";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/effect-fade";
+import Slide1 from "/public/images/slide-1.png";
+import Slide2 from "/public/images/slide-2.png";
+import Slide3 from "/public/images/slide-3.png";
+import Slide4 from "/public/images/slide-4.png";
 
 import { EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";

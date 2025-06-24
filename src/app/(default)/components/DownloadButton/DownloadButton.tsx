@@ -1,7 +1,7 @@
 "use client";
 
+import { getDownloadAsset, getLatestVersion } from "@/src/lib/actions";
 import { useCallback, useEffect, useState } from "react";
-import { getDownloadAsset, getLatestVersion } from "../../../../lib/actions";
 import PlatformIcon from "./PlatformIcon";
 
 export default function DownloadButton() {

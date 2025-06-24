@@ -1,5 +1,5 @@
-import WindowsIcon from "@/src/components/WindowsIcon";
 import { SiApple, SiLinux } from "@icons-pack/react-simple-icons";
+import WindowsIcon from "./../../../../components/WindowsIcon";
 
 const platformIcons = {
 	macos: <SiApple className="text-white" />,
