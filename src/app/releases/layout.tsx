@@ -25,7 +25,7 @@ export default function ReleasesLayout({
 		<>
 			<Header />
 			<main className="grow">{children}</main>
-			<Footer border={true} />
+			<Footer />
 		</>
 	);
 }

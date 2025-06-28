@@ -25,7 +25,7 @@ export default function DownloadLayout({
 		<>
 			<Header />
 			<main className="grow">{children}</main>
-			<Footer border={true} />
+			<Footer />
 		</>
 	);
 }

@@ -1,11 +1,7 @@
 import { Download } from "lucide-react";
 import type { Platform } from "../types";
 
-export default function DownloadItem({
-	platform,
-}: {
-	platform: Platform;
-}) {
+export default function DownloadItem({ platform }: { platform: Platform }) {
 	return (
 		<a
 			href={platform.asset?.browser_download_url}

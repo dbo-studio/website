@@ -1,4 +1,3 @@
-import Logo06 from "@/public/images/tidb.png";
 import Logo07 from "@/public/images/cockroach.webp";
 import Logo01 from "@/public/images/logo.svg";
 import Logo08 from "@/public/images/mariadb.svg";
@@ -7,6 +6,7 @@ import Logo03 from "@/public/images/postgresql.svg";
 import Logo09 from "@/public/images/sql-server.svg";
 import Logo04 from "@/public/images/sqlite.svg";
 import Logo05 from "@/public/images/supabase.svg";
+import Logo06 from "@/public/images/tidb.png";
 import Image from "next/image";
 
 export default function Databases() {
