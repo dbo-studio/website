@@ -10,6 +10,9 @@
 	},
 	"dependencies": {
 		"@icons-pack/react-simple-icons": "^13.1.0",
+		"@netlify/plugin-nextjs": "^5.11.4",
+		"@tailwindcss/forms": "^0.5.10",
+		"@tailwindcss/postcss": "^4.1.10",
 		"aos": "^2.3.4",
 		"drizzle-orm": "^0.44.2",
 		"lucide-react": "^0.522.0",
@@ -20,9 +23,7 @@
 		"react-markdown": "^10.1.0",
 		"remark-gfm": "^4.0.1",
 		"swiper": "^11.2.8",
-		"zod": "^3.25.67",
-		"@tailwindcss/forms": "^0.5.10",
-		"@tailwindcss/postcss": "^4.1.10"
+		"zod": "^3.25.67"
 	},
 	"devDependencies": {
 		"@types/aos": "^3.0.7",
